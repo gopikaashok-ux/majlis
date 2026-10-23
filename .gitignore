@@ -3,3 +3,4 @@ dist/
 tests/output/
 *.log
 .DS_Store
+storybook-static/
