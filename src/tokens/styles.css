@@ -1,0 +1,20 @@
+/*
+ * Majlis — composite styles (Figma text + effect styles built from the tokens).
+ */
+:root {
+  /* Effect style: elevation/rest */
+  --elevation-rest:
+    var(--shadow-x-none) var(--shadow-y-xs) var(--shadow-blur-xs) var(--shadow-spread-0) var(--shadow-color-contact),
+    var(--shadow-x-none) var(--shadow-y-xs) var(--shadow-blur-sm) var(--shadow-spread-0) var(--shadow-color-ambient);
+}
+
+/* Text styles: Label/S/Medium, Label/S/Bold */
+.text-label-s-medium,
+.text-label-s-bold {
+  font-family: var(--font-family-primary), sans-serif;
+  font-size: var(--font-size-xs);
+  line-height: var(--font-line-height-16);
+  letter-spacing: var(--font-letter-spacing-none);
+}
+.text-label-s-medium { font-weight: var(--font-weight-medium); }
+.text-label-s-bold { font-weight: var(--font-weight-bold); }

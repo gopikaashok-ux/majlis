@@ -1,0 +1,184 @@
+/*
+ * Majlis — Semantics (Light)
+ * Generated from the Figma variable collections "Semantic - Color" and "Semantic"
+ * (file UOnIj7Luxt9xV4wu06lNFy, node 789:40102). Every value aliases a primitive.
+ */
+:root {
+  /* Semantic - Color */
+  --color-bg-default: var(--color-white);
+  --color-bg-subtle: var(--color-neutral-50);
+  --color-surface-default: var(--color-white);
+  --color-surface-raised: var(--color-white);
+  --color-surface-glass: var(--color-white-a60);
+  --color-surface-on-dark: var(--color-white-a8);
+  --color-surface-on-dark-hover: var(--color-white-a12);
+  --color-overlay-scrim: var(--color-neutral-900-a40);
+
+  --color-text-primary: var(--color-neutral-900);
+  --color-text-secondary: var(--color-neutral-600);
+  --color-text-disabled: var(--color-neutral-400);
+  --color-text-inverse: var(--color-white);
+  --color-text-link: var(--color-emerald-700);
+  --color-text-link-hover: var(--color-emerald-800);
+  --color-text-on-dark-secondary: var(--color-white-a60);
+
+  --color-border-default: var(--color-neutral-200);
+  --color-border-strong: var(--color-neutral-400);
+  --color-border-focus: var(--color-emerald-600);
+  --color-border-control: var(--color-neutral-500);
+  --color-border-error: var(--color-error-600);
+  --color-border-glass: var(--color-white-a40);
+  --color-border-on-dark: var(--color-white-a12);
+
+  --color-action-primary-bg-default: var(--color-emerald-600);
+  --color-action-primary-bg-hover: var(--color-emerald-700);
+  --color-action-primary-bg-pressed: var(--color-emerald-800);
+  --color-action-primary-bg-disabled: var(--color-neutral-200);
+  --color-action-primary-text-default: var(--color-white);
+  --color-action-primary-text-hover: var(--color-white);
+  --color-action-primary-text-pressed: var(--color-white);
+  --color-action-primary-text-disabled: var(--color-neutral-600);
+  --color-action-primary-icon-default: var(--color-white);
+  --color-action-primary-icon-hover: var(--color-white);
+  --color-action-primary-icon-pressed: var(--color-white);
+  --color-action-primary-icon-disabled: var(--color-neutral-600);
+  --color-action-primary-border-default: var(--color-emerald-600);
+  --color-action-primary-border-hover: var(--color-emerald-700);
+  --color-action-primary-border-pressed: var(--color-emerald-800);
+  --color-action-primary-border-disabled: var(--color-neutral-200);
+  --color-action-primary-divider: var(--color-emerald-400);
+
+  --color-action-secondary-bg-default: var(--color-white);
+  --color-action-secondary-bg-hover: var(--color-teal-50);
+  --color-action-secondary-bg-pressed: var(--color-teal-100);
+  --color-action-secondary-bg-disabled: var(--color-white);
+  --color-action-secondary-text-default: var(--color-teal-700);
+  --color-action-secondary-text-hover: var(--color-teal-800);
+  --color-action-secondary-text-pressed: var(--color-teal-900);
+  --color-action-secondary-text-disabled: var(--color-neutral-400);
+  --color-action-secondary-icon-default: var(--color-teal-700);
+  --color-action-secondary-icon-hover: var(--color-teal-800);
+  --color-action-secondary-icon-pressed: var(--color-teal-900);
+  --color-action-secondary-icon-disabled: var(--color-neutral-400);
+  --color-action-secondary-border-default: var(--color-teal-700);
+  --color-action-secondary-border-hover: var(--color-teal-800);
+  --color-action-secondary-border-pressed: var(--color-teal-900);
+  --color-action-secondary-border-disabled: var(--color-neutral-200);
+
+  --color-action-tertiary-bg-default: var(--color-transparent);
+  --color-action-tertiary-bg-hover: var(--color-emerald-50);
+  --color-action-tertiary-bg-pressed: var(--color-emerald-200);
+  --color-action-tertiary-selected: var(--color-emerald-100);
+  --color-action-tertiary-bg-disabled: var(--color-transparent);
+  --color-action-tertiary-text-default: var(--color-emerald-700);
+  --color-action-tertiary-text-hover: var(--color-emerald-800);
+  --color-action-tertiary-text-pressed: var(--color-emerald-900);
+  --color-action-tertiary-text-disabled: var(--color-neutral-400);
+  --color-action-tertiary-icon-default: var(--color-emerald-700);
+  --color-action-tertiary-icon-hover: var(--color-emerald-800);
+  --color-action-tertiary-icon-pressed: var(--color-emerald-900);
+  --color-action-tertiary-icon-disabled: var(--color-neutral-400);
+  --color-action-tertiary-border-default: var(--color-transparent);
+  --color-action-tertiary-border-hover: var(--color-transparent);
+  --color-action-tertiary-border-pressed: var(--color-transparent);
+  --color-action-tertiary-border-disabled: var(--color-transparent);
+
+  --color-action-destructive-bg-default: var(--color-error-600);
+  --color-action-destructive-bg-hover: var(--color-error-700);
+  --color-action-destructive-bg-pressed: var(--color-error-800);
+  --color-action-destructive-bg-disabled: var(--color-neutral-200);
+  --color-action-destructive-text-default: var(--color-white);
+  --color-action-destructive-text-hover: var(--color-white);
+  --color-action-destructive-text-pressed: var(--color-white);
+  --color-action-destructive-text-disabled: var(--color-neutral-600);
+  --color-action-destructive-icon-default: var(--color-white);
+  --color-action-destructive-icon-hover: var(--color-white);
+  --color-action-destructive-icon-pressed: var(--color-white);
+  --color-action-destructive-icon-disabled: var(--color-neutral-600);
+  --color-action-destructive-border-default: var(--color-error-600);
+  --color-action-destructive-border-hover: var(--color-error-700);
+  --color-action-destructive-border-pressed: var(--color-error-800);
+  --color-action-destructive-border-disabled: var(--color-neutral-200);
+
+  --color-success-bg: var(--color-success-100);
+  --color-success-border: var(--color-success-200);
+  --color-success-text: var(--color-success-600);
+  --color-success-solid: var(--color-success-600);
+  --color-warning-bg: var(--color-warning-100);
+  --color-warning-border: var(--color-warning-200);
+  --color-warning-text: var(--color-warning-600);
+  --color-warning-solid: var(--color-warning-600);
+  --color-error-bg: var(--color-error-100);
+  --color-error-border: var(--color-error-200);
+  --color-error-text: var(--color-error-600);
+  --color-error-solid: var(--color-error-600);
+  --color-info-bg: var(--color-info-100);
+  --color-info-border: var(--color-info-200);
+  --color-info-text: var(--color-info-600);
+  --color-info-solid: var(--color-info-600);
+
+  --color-control-track-off: var(--color-neutral-500);
+  --color-control-track-off-hover: var(--color-neutral-600);
+  --color-control-knob: var(--color-white);
+  --color-progress-track: var(--color-neutral-100);
+  --color-progress-fill: var(--color-emerald-600);
+  --color-badge-bg: var(--color-emerald-600);
+  --color-badge-text: var(--color-white);
+
+  /* Semantic */
+  --icon-size-badge: var(--icon-size-12);
+  --icon-size-inline: var(--icon-size-14);
+  --icon-size-default: var(--icon-size-16);
+  --icon-size-nav: var(--icon-size-20);
+  --icon-size-large: var(--icon-size-24);
+  --icon-size-card: var(--icon-size-32);
+  --icon-size-hero: var(--icon-size-40);
+
+  --color-icon-primary: var(--color-neutral-900);
+  --color-icon-secondary: var(--color-neutral-600);
+  --color-icon-muted: var(--color-neutral-500);
+  --color-icon-disabled: var(--color-neutral-400);
+  --color-icon-inverse: var(--color-white);
+  --color-icon-brand: var(--color-emerald-600);
+  --color-icon-brand-hover: var(--color-emerald-700);
+  --color-icon-success: var(--color-success-600);
+  --color-icon-warning: var(--color-warning-600);
+  --color-icon-error: var(--color-error-600);
+  --color-icon-info: var(--color-info-600);
+  --color-icon-on-dark: var(--color-white);
+  --color-icon-on-dark-secondary: var(--color-white-a60);
+
+  --opacity-disabled: var(--opacity-40);
+  --opacity-hover: var(--opacity-8);
+  --opacity-pressed: var(--opacity-12);
+  --opacity-dim-background: var(--opacity-40);
+  --opacity-decoration: var(--opacity-4);
+
+  --border-width-divider: var(--border-width-hairline);
+  --border-width-default: var(--border-width-thin);
+  --border-width-focus: var(--border-width-thick);
+  --border-width-strong: var(--border-width-heavy);
+
+  --shadow-color-contact: var(--color-neutral-900-a06);
+  --shadow-color-ambient: var(--color-neutral-900-a10);
+  --shadow-color-deep: var(--color-neutral-900-a14);
+
+  --size-height-sm: var(--size-32);
+  --size-height-md: var(--size-40);
+  --size-height-lg: var(--size-48);
+
+  --radius-sm: var(--radius-4);
+  --radius-md: var(--radius-8);
+  --radius-lg: var(--radius-12);
+
+  --space-padding-sm: var(--spacing-12);
+  --space-padding-md: var(--spacing-16);
+  --space-padding-lg: var(--spacing-20);
+  --space-gap-xs: var(--spacing-4);
+  --space-gap-sm: var(--spacing-8);
+  --space-gap-md: var(--spacing-12);
+  --space-gap-lg: var(--spacing-16);
+  --space-gap-xl: var(--spacing-24);
+  --space-gap-2xl: var(--spacing-32);
+  --space-gap-3xl: var(--spacing-48);
+}

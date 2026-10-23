@@ -1,0 +1,75 @@
+/* Tab Bar — Style=Icon Tabs (Figma 580:1841) */
+.bar {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--spacing-8);
+  padding: var(--spacing-8);
+  background: var(--color-surface-default);
+  border: var(--border-width-thin) solid var(--color-border-default);
+  border-radius: var(--radius-16);
+  box-shadow: var(--elevation-rest);
+}
+
+/* Tab Item / Glass — Style=Icon, State=Default (578:1793) */
+.tab {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-4);
+  padding: var(--spacing-8) var(--spacing-16);
+  border-radius: var(--radius-8);
+  background: var(--color-action-tertiary-bg-default);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-family: var(--font-family-primary), sans-serif;
+  font-size: var(--font-size-xs);
+  line-height: var(--font-line-height-16);
+  letter-spacing: var(--font-letter-spacing-none);
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+}
+
+/* State=Hover (578:1804) */
+.tab:hover:not([aria-selected="true"]) {
+  background: var(--color-bg-subtle);
+  color: var(--color-text-primary);
+}
+
+/* State=Active (578:1815) */
+.tab[aria-selected="true"] {
+  color: var(--color-action-tertiary-text-default);
+  font-weight: var(--font-weight-bold);
+}
+
+.tab:focus-visible {
+  outline: var(--border-width-focus) solid var(--color-border-focus);
+  outline-offset: 0;
+}
+
+.icon,
+.chevron {
+  flex-shrink: 0;
+  background-color: currentColor;
+  -webkit-mask: var(--tab-icon) center / contain no-repeat;
+  mask: var(--tab-icon) center / contain no-repeat;
+}
+
+.icon {
+  width: var(--icon-size-nav);
+  height: var(--icon-size-nav);
+}
+
+.labelRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  overflow: clip;
+}
+
+.chevron {
+  width: var(--icon-size-badge);
+  height: var(--icon-size-badge);
+}

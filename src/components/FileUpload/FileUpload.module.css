@@ -1,0 +1,261 @@
+/* File Upload / Dropzone (Figma 330:10272) */
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--spacing-8);
+  width: 100%;
+  max-width: 480px;
+  font-family: var(--font-family-primary), sans-serif;
+  letter-spacing: var(--font-letter-spacing-none);
+}
+
+.root p {
+  margin: 0;
+}
+
+.label {
+  align-self: flex-start;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  line-height: var(--font-line-height-20);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Dropzone — State=Idle */
+.dropzone {
+  --dz-border-width: var(--border-width-thin);
+  --dz-border-color: var(--color-border-strong);
+  --dz-radius: var(--radius-12);
+
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-8);
+  padding: var(--spacing-24);
+  /* Transparent border keeps Figma's stroke-in-layout box; the dashed line is drawn by .outline. */
+  border: var(--dz-border-width) solid transparent;
+  border-radius: var(--dz-radius);
+  background: var(--color-bg-subtle);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  text-align: center;
+}
+
+/* State=Drag over */
+.dropzone[data-state="dragOver"] {
+  --dz-border-width: var(--border-width-thick);
+  --dz-border-color: var(--color-action-primary-bg-default);
+  background: var(--color-action-tertiary-bg-hover);
+  color: var(--color-action-tertiary-text-default);
+}
+
+/* State=Error */
+.dropzone[data-state="error"] {
+  --dz-border-color: var(--color-border-error);
+  background: var(--color-error-bg);
+}
+
+.dropzone[data-disabled] {
+  cursor: not-allowed;
+  opacity: var(--opacity-disabled);
+}
+
+/* Dashed stroke (dash 6 / gap 4, inside alignment) */
+.outline {
+  position: absolute;
+  inset: calc(var(--dz-border-width) * -1);
+  width: calc(100% + var(--dz-border-width) * 2);
+  height: calc(100% + var(--dz-border-width) * 2);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.outline rect {
+  x: calc(var(--dz-border-width) / 2);
+  y: calc(var(--dz-border-width) / 2);
+  width: calc(100% - var(--dz-border-width));
+  height: calc(100% - var(--dz-border-width));
+  rx: calc(var(--dz-radius) - var(--dz-border-width) / 2);
+  fill: none;
+  stroke: var(--dz-border-color);
+  stroke-width: var(--dz-border-width);
+  stroke-dasharray: 6 4;
+}
+
+.uploadIcon,
+.icon20,
+.icon16 {
+  flex-shrink: 0;
+  background-color: currentColor;
+  -webkit-mask: var(--fu-icon) center / contain no-repeat;
+  mask: var(--fu-icon) center / contain no-repeat;
+  pointer-events: none;
+}
+
+.uploadIcon {
+  width: var(--icon-size-large);
+  height: var(--icon-size-large);
+}
+
+.icon20 {
+  width: var(--icon-size-nav);
+  height: var(--icon-size-nav);
+}
+
+.icon16 {
+  width: var(--icon-size-default);
+  height: var(--icon-size-default);
+}
+
+.prompt {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-md);
+  line-height: var(--font-line-height-24);
+  font-weight: var(--font-weight-regular);
+  pointer-events: none;
+}
+
+.dropzone[data-state="dragOver"] .prompt {
+  color: var(--color-action-tertiary-text-default);
+}
+
+/* Text Link / State=Default */
+.browse {
+  all: unset;
+  pointer-events: auto;
+  color: var(--color-text-link);
+  cursor: pointer;
+  border-radius: var(--radius-4);
+}
+
+.browse:hover {
+  color: var(--color-text-link-hover);
+  text-decoration: underline;
+}
+
+.browse:focus-visible,
+.iconButton:focus-visible {
+  outline: var(--border-width-focus) solid var(--color-border-focus);
+  outline-offset: var(--spacing-2);
+}
+
+.hint {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  line-height: var(--font-line-height-16);
+  pointer-events: none;
+}
+
+.input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.error {
+  color: var(--color-error-text);
+  font-size: var(--font-size-xs);
+  line-height: var(--font-line-height-16);
+}
+
+/* File row — Uploading / Uploaded */
+.fileRow {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-12);
+  padding: var(--spacing-12);
+  background: var(--color-bg-default);
+  border: var(--border-width-thin) solid var(--color-border-default);
+  border-radius: var(--radius-8);
+}
+
+.fileIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--size-40);
+  height: var(--size-40);
+  border-radius: var(--radius-8);
+  background: var(--color-bg-subtle);
+  color: var(--color-text-secondary);
+}
+
+.fileText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-2);
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.fileRow[data-status="uploading"] .fileText {
+  gap: var(--spacing-4);
+}
+
+.fileName {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  line-height: var(--font-line-height-20);
+  font-weight: var(--font-weight-semibold);
+}
+
+.fileMeta {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  line-height: var(--font-line-height-16);
+}
+
+.progress {
+  align-self: stretch;
+  height: var(--spacing-4);
+  border-radius: var(--radius-full);
+  background: var(--color-progress-track);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--color-progress-fill);
+  transition: width 200ms ease;
+}
+
+.statusIcon {
+  color: var(--color-success-solid);
+}
+
+/* Button / Variant=Icon Button, State=Default, Size=Small */
+.iconButton {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--size-32);
+  height: var(--size-32);
+  border: var(--border-width-thin) solid var(--color-border-default);
+  border-radius: var(--radius-8);
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.iconButton:hover {
+  background: var(--color-bg-subtle);
+}
