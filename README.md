@@ -10,8 +10,9 @@ React + TypeScript components built from the Majlis Figma file
 | `src/tokens/` | Design tokens generated from the Figma variable collections (Primitives, Semantic - Color, Semantic), using the variables' code-syntax names |
 | `src/components/TabBar/` | Tab Bar — Style=Icon Tabs (Figma `580:1841`) |
 | `src/components/FileUpload/` | File Upload / Dropzone — Idle, Drag over, Uploading, Uploaded, Error (Figma `330:10272`) |
-| `src/App.tsx` | Demo page: Tab Bar, all Dropzone variants, and a working upload demo |
-| `tests/visual-verify.mjs` | Renders the build in Chromium and checks element geometry and colours against values read from Figma |
+| `src/components/Sidebar/` | Sidebar — Glass style, Expanded and Collapsed, with Default / Hover / Active items (Figma `1501:4459`) |
+| `src/App.tsx` | Demo page: Tab Bar, Sidebar (both modes + a working one), all Dropzone variants, and a working upload demo |
+| `tests/visual-verify.mjs`, `tests/verify-sidebar.mjs` | Render the build in Chromium and check element geometry and colours against values read from Figma |
 
 Icons are the SVGs exported from Figma; they are rendered as CSS masks so their colour comes from the tokens.
 

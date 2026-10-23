@@ -5,7 +5,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "test": "vitest run",
-    "verify:visual": "node tests/visual-verify.mjs"
+    "verify:visual": "node tests/visual-verify.mjs && node tests/verify-sidebar.mjs"
   },
   "dependencies": {
     "@fontsource/plus-jakarta-sans": "^5.3.0",

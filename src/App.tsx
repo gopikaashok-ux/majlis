@@ -1,6 +1,18 @@
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { FileUpload, type UploadItem } from "./components/FileUpload";
 import {
+  Sidebar,
+  analyticsIcon,
+  documentsIcon,
+  homeIcon,
+  insightsIcon,
+  integrationsIcon,
+  plansIcon,
+  settingsIcon,
+  teamIcon,
+  type SidebarNavItem,
+} from "./components/Sidebar";
+import {
   TabBar,
   dashboardSquare01Icon,
   folder01Icon,
@@ -22,6 +34,67 @@ const tabItems: TabBarItem[] = [
 ];
 
 const MB = 1024 * 1024;
+
+// Mirrors the content of the Sidebar instances in Figma frame 1501:4459 ("Left nav").
+const sidebarSections: SidebarNavItem[][] = [
+  [
+    { id: "overview", label: "Overview", icon: homeIcon },
+    { id: "documents", label: "Documents", icon: documentsIcon },
+    { id: "analytics", label: "Analytics", icon: analyticsIcon, badge: "New" },
+    { id: "insights", label: "Insights", icon: insightsIcon },
+    { id: "plans", label: "Plans", icon: plansIcon },
+  ],
+  [
+    { id: "team", label: "Team", icon: teamIcon },
+    { id: "integrations", label: "Integrations", icon: integrationsIcon },
+    { id: "settings", label: "Settings", icon: settingsIcon },
+  ],
+];
+const sidebarUser = { name: "Syed Hafeez", plan: "Enterprise", initials: "SH" };
+// Backdrop colour of the Figma frame (not a design token).
+const leftNavBackdrop = "#edeaff";
+
+/** Same layout as Figma frame 1501:4459: Expanded at (60, 54), Collapsed at (356, 54). */
+function SidebarGallery() {
+  return (
+    <div
+      data-testid="sidebar-gallery"
+      style={{ position: "relative", width: 495, height: 868, background: leftNavBackdrop }}
+    >
+      <div data-testid="sidebar-expanded" style={{ position: "absolute", left: 60, top: 54, height: 760 }}>
+        <Sidebar sections={sidebarSections} user={sidebarUser} aria-label="Main (expanded)" />
+      </div>
+      <div data-testid="sidebar-collapsed" style={{ position: "absolute", left: 356, top: 54, height: 760 }}>
+        <Sidebar sections={sidebarSections} user={sidebarUser} defaultCollapsed aria-label="Main (collapsed)" />
+      </div>
+    </div>
+  );
+}
+
+/** Working example: click items to change the active page, use the double-arrow to collapse/expand. */
+function SidebarDemo() {
+  const [active, setActive] = useState("overview");
+  return (
+    <div
+      data-testid="sidebar-demo"
+      style={{ display: "flex", gap: 24, alignItems: "stretch", height: 760, padding: 24, background: leftNavBackdrop }}
+    >
+      <Sidebar
+        sections={sidebarSections}
+        user={sidebarUser}
+        activeId={active}
+        onNavigate={(id, event) => {
+          event.preventDefault();
+          setActive(id);
+        }}
+        aria-label="Main (demo)"
+      />
+      <p style={{ ...sectionTitle, alignSelf: "center", color: "var(--color-text-primary)" }}>
+        Active page: <strong data-testid="sidebar-demo-active">{active}</strong>
+      </p>
+    </div>
+  );
+}
 
 /** Places a variant at its x/y inside the Figma component-set frame (330:10272). */
 function At({ x, y, id, children }: { x: number; y: number; id: string; children: ReactNode }) {
@@ -121,6 +194,14 @@ export function App() {
         <div data-testid="tabbar-frame" style={{ display: "inline-block" }}>
           <TabBar items={tabItems} defaultValue="overview" aria-label="Workspace sections" />
         </div>
+      </section>
+      <section>
+        <h2 style={sectionTitle}>Sidebar · Glass — Expanded &amp; Collapsed</h2>
+        <SidebarGallery />
+      </section>
+      <section>
+        <h2 style={sectionTitle}>Sidebar · Glass — try it</h2>
+        <SidebarDemo />
       </section>
       <section>
         <h2 style={sectionTitle}>File Upload · Dropzone — variants</h2>

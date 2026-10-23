@@ -6,6 +6,14 @@
   --elevation-rest:
     var(--shadow-x-none) var(--shadow-y-xs) var(--shadow-blur-xs) var(--shadow-spread-0) var(--shadow-color-contact),
     var(--shadow-x-none) var(--shadow-y-xs) var(--shadow-blur-sm) var(--shadow-spread-0) var(--shadow-color-ambient);
+
+  /* Effect style: elevation/raised */
+  --elevation-raised:
+    var(--shadow-x-none) var(--shadow-y-md) var(--shadow-blur-md) var(--shadow-spread-neg2) var(--shadow-color-ambient),
+    var(--shadow-x-none) var(--shadow-y-sm) var(--shadow-blur-sm) var(--shadow-spread-neg2) var(--shadow-color-contact);
+
+  /* Effect style: Glass/Blur (Figma background-blur radius maps to half as a CSS blur) */
+  --glass-blur: blur(calc(var(--shadow-blur-xl) / 2));
 }
 
 /* Text styles: Label/S/Medium, Label/S/Bold */
