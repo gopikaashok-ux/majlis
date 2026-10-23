@@ -1,4 +1,4 @@
-name: Deploy demo to GitHub Pages
+name: Deploy demo and Storybook to GitHub Pages
 
 on:
   push:
@@ -26,6 +26,8 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
+      # Storybook is published next to the demo, at <pages-url>/storybook/
+      - run: npm run build-storybook -- --output-dir dist/storybook
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
