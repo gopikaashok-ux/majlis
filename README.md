@@ -32,5 +32,8 @@ npm run verify:visual  # Figma-vs-browser check (needs a Chromium; path set in t
 
 ## Live demo
 
-Every push to `main` builds and deploys the demo page to GitHub Pages:
-**https://gopikaashok-ux.github.io/majlis/** (workflow: `.github/workflows/deploy-pages.yml`).
+Every push to `main` builds and deploys the demo page and Storybook to GitHub Pages
+(workflow: `.github/workflows/deploy-pages.yml`):
+
+- Demo: **https://gopikaashok-ux.github.io/majlis/**
+- Storybook: **https://gopikaashok-ux.github.io/majlis/storybook/**
