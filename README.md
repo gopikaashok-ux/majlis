@@ -24,3 +24,8 @@ npm test               # unit / behaviour tests (Vitest + Testing Library)
 npm run build
 npm run verify:visual  # Figma-vs-browser check (needs a Chromium; path set in the script)
 ```
+
+## Live demo
+
+Every push to `main` builds and deploys the demo page to GitHub Pages:
+**https://gopikaashok-ux.github.io/majlis/** (workflow: `.github/workflows/deploy-pages.yml`).
