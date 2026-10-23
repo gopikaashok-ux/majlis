@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { Fragment, useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { Button, arrowRight01Icon, plusSignIcon, type ButtonSize } from "./components/Button";
 import { FileUpload, type UploadItem } from "./components/FileUpload";
 import {
   Sidebar,
@@ -96,6 +97,84 @@ function SidebarDemo() {
   );
 }
 
+const buttonSizes: ButtonSize[] = ["small", "medium", "large"];
+const buttonStates = ["default", "hover", "focus", "pressed", "disabled", "loading"] as const;
+
+/** Button Variant=Primary: every State × Size of Figma component set 481:10750, as in its matrix. */
+function PrimaryButtonGallery() {
+  return (
+    <div
+      data-testid="button-gallery"
+      style={{
+        display: "grid",
+        gridTemplateColumns: "auto repeat(3, 180px)",
+        alignItems: "center",
+        gap: "24px 0",
+        padding: 24,
+        background: "var(--color-bg-default)",
+      }}
+    >
+      <span />
+      {buttonSizes.map((size) => (
+        <span key={size} style={{ ...sectionTitle, margin: 0, textTransform: "capitalize" }}>
+          {size}
+        </span>
+      ))}
+      {buttonStates.map((state) => (
+        <Fragment key={state}>
+          <span style={{ ...sectionTitle, margin: "0 32px 0 0", textTransform: "capitalize" }}>{state}</span>
+          {buttonSizes.map((size) => (
+            <div key={size} data-testid={`button-${size}-${state}`}>
+              <Button
+                size={size}
+                leadingIcon={plusSignIcon}
+                disabled={state === "disabled"}
+                loading={state === "loading"}
+                data-state={["hover", "focus", "pressed"].includes(state) ? state : undefined}
+                tabIndex={-1}
+              >
+                Button
+              </Button>
+            </div>
+          ))}
+        </Fragment>
+      ))}
+    </div>
+  );
+}
+
+/** Working example: hover, press, tab to focus; clicking "Save changes" shows Loading for a moment. */
+function PrimaryButtonDemo() {
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(0);
+  useEffect(() => {
+    if (!saving) return;
+    const timer = window.setTimeout(() => {
+      setSaving(false);
+      setSaved((n) => n + 1);
+    }, 1200);
+    return () => clearTimeout(timer);
+  }, [saving]);
+
+  return (
+    <div data-testid="button-demo" style={{ display: "flex", gap: 16, alignItems: "center", flexWrap: "wrap" }}>
+      <Button size="small" leadingIcon={plusSignIcon}>
+        New item
+      </Button>
+      <Button loading={saving} onClick={() => setSaving(true)}>
+        {saving ? "Saving…" : "Save changes"}
+      </Button>
+      <Button size="large" trailingIcon={arrowRight01Icon}>
+        Continue
+      </Button>
+      <Button disabled>Unavailable</Button>
+      <span style={{ ...sectionTitle, margin: 0, color: "var(--color-text-primary)" }}>
+        Saved <strong data-testid="button-demo-saved">{saved}</strong> time(s)
+      </span>
+    </div>
+  );
+}
+
 /** Places a variant at its x/y inside the Figma component-set frame (330:10272). */
 function At({ x, y, id, children }: { x: number; y: number; id: string; children: ReactNode }) {
   const style: CSSProperties = { position: "absolute", left: x, top: y, width: 480 };
@@ -189,6 +268,14 @@ function FileUploadDemo() {
 export function App() {
   return (
     <main style={{ padding: 24, display: "grid", gap: 48, justifyItems: "start" }}>
+      <section>
+        <h2 style={sectionTitle}>Button · Primary — variants</h2>
+        <PrimaryButtonGallery />
+      </section>
+      <section>
+        <h2 style={sectionTitle}>Button · Primary — try it</h2>
+        <PrimaryButtonDemo />
+      </section>
       <section>
         <h2 style={sectionTitle}>Tab Bar · Icon Tabs</h2>
         <div data-testid="tabbar-frame" style={{ display: "inline-block" }}>

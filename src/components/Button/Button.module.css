@@ -1,0 +1,115 @@
+/* Button (Figma component set 481:10750) */
+.button {
+  all: unset;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: var(--radius-8);
+  font-family: var(--font-family-primary), sans-serif;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--font-letter-spacing-none);
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Size=Small */
+.button[data-size="small"] {
+  gap: var(--spacing-6);
+  height: var(--spacing-32);
+  padding: var(--spacing-0) var(--spacing-12);
+  font-size: var(--font-size-xs);
+  line-height: var(--font-line-height-16);
+  --btn-icon-size: var(--spacing-16);
+}
+
+/* Size=Medium */
+.button[data-size="medium"] {
+  gap: var(--spacing-8);
+  height: var(--spacing-40);
+  padding: var(--spacing-0) var(--spacing-16);
+  font-size: var(--font-size-sm);
+  line-height: var(--font-line-height-20);
+  --btn-icon-size: var(--spacing-20);
+}
+
+/* Size=Large */
+.button[data-size="large"] {
+  gap: var(--spacing-8);
+  height: var(--spacing-48);
+  padding: var(--spacing-0) var(--spacing-20);
+  font-size: var(--font-size-md);
+  line-height: var(--font-line-height-24);
+  --btn-icon-size: var(--spacing-24);
+}
+
+/* Variant=Primary, State=Default (also Focus and Loading) */
+.button[data-variant="primary"] {
+  background: var(--color-action-primary-bg-default);
+  color: var(--color-text-inverse);
+}
+
+/* State=Hover */
+.button[data-variant="primary"]:hover:not(:disabled, [data-loading]),
+.button[data-variant="primary"][data-state="hover"] {
+  background: var(--color-action-primary-bg-hover);
+}
+
+/* State=Pressed */
+.button[data-variant="primary"]:active:not(:disabled, [data-loading]),
+.button[data-variant="primary"][data-state="pressed"] {
+  background: var(--color-action-primary-bg-pressed);
+}
+
+/* State=Disabled */
+.button[data-variant="primary"]:disabled {
+  background: var(--color-action-primary-bg-disabled);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.button[data-loading] {
+  cursor: progress;
+}
+
+/* State=Focus — "Focus ring": 2px, 4px outside the button, radius 12 */
+.button:focus-visible,
+.button[data-state="focus"] {
+  outline: var(--border-width-focus) solid var(--color-border-focus);
+  outline-offset: var(--border-width-focus);
+}
+
+/* Masked icons take the button's text colour */
+.icon {
+  flex-shrink: 0;
+  width: var(--btn-icon-size);
+  height: var(--btn-icon-size);
+  background-color: currentColor;
+  -webkit-mask: var(--btn-icon) center / contain no-repeat;
+  mask: var(--btn-icon) center / contain no-repeat;
+}
+
+/* State=Loading — _Spinner */
+.spinner {
+  animation: btn-spin 0.8s linear infinite;
+}
+
+@keyframes btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation-duration: 2.4s;
+  }
+}
+
+.label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

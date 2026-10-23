@@ -8,11 +8,12 @@ React + TypeScript components built from the Majlis Figma file
 | Path | Contents |
 | --- | --- |
 | `src/tokens/` | Design tokens generated from the Figma variable collections (Primitives, Semantic - Color, Semantic), using the variables' code-syntax names |
+| `src/components/Button/` | Button — Variant=Primary, Size=Small / Medium / Large, State=Default / Hover / Focus / Pressed / Disabled / Loading (Figma `481:10750`) |
 | `src/components/TabBar/` | Tab Bar — Style=Icon Tabs (Figma `580:1841`) |
 | `src/components/FileUpload/` | File Upload / Dropzone — Idle, Drag over, Uploading, Uploaded, Error (Figma `330:10272`) |
 | `src/components/Sidebar/` | Sidebar — Glass style, Expanded and Collapsed, with Default / Hover / Active items (Figma `1501:4459`) |
-| `src/App.tsx` | Demo page: Tab Bar, Sidebar (both modes + a working one), all Dropzone variants, and a working upload demo |
-| `tests/visual-verify.mjs`, `tests/verify-sidebar.mjs` | Render the build in Chromium and check element geometry and colours against values read from Figma |
+| `src/App.tsx` | Demo page: Primary Button (all states × sizes + a working one), Tab Bar, Sidebar (both modes + a working one), all Dropzone variants, and a working upload demo |
+| `tests/visual-verify.mjs`, `tests/verify-sidebar.mjs`, `tests/verify-button.mjs` | Render the build in Chromium and check element geometry and colours against values read from Figma |
 
 Icons are the SVGs exported from Figma; they are rendered as CSS masks so their colour comes from the tokens.
 
