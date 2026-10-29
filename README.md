@@ -12,7 +12,7 @@ React + TypeScript components built from the Majlis Figma file
 | `src/components/TabBar/` | Tab Bar — Style=Icon Tabs (Figma `580:1841`) |
 | `src/components/FileUpload/` | File Upload / Dropzone — Idle, Drag over, Uploading, Uploaded, Error (Figma `330:10272`) |
 | `src/components/Sidebar/` | Sidebar — Glass style, Expanded and Collapsed, with Default / Hover / Active items (Figma `1501:4459`) |
-| `.storybook/`, `src/**/*.stories.tsx` | Storybook (React + Vite). `preview.ts` loads the same tokens as the app; the Button has Playground, Sizes, States and other stories |
+| `.storybook/`, `src/**/*.stories.tsx` | Storybook (React + Vite). `preview.ts` loads the same tokens as the app; stories for Button, Tab Bar, Sidebar and File Upload |
 | `src/App.tsx` | Demo page: Primary Button (all states × sizes + a working one), Tab Bar, Sidebar (both modes + a working one), all Dropzone variants, and a working upload demo |
 | `tests/visual-verify.mjs`, `tests/verify-sidebar.mjs`, `tests/verify-button.mjs` | Render the build in Chromium and check element geometry and colours against values read from Figma |
 
