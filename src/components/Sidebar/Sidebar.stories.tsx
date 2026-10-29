@@ -1,5 +1,5 @@
 import type { Decorator, Meta, StoryObj } from "@storybook/react-vite";
-import { useState } from "react";
+import { useArgs } from "storybook/preview-api";
 import {
   Sidebar,
   analyticsIcon,
@@ -11,6 +11,7 @@ import {
   settingsIcon,
   teamIcon,
   type SidebarNavItem,
+  type SidebarProps,
 } from ".";
 
 // Same content as the Sidebar instances in Figma frame 1501:4459 ("Left nav").
@@ -37,13 +38,37 @@ const onBackdrop: Decorator = (Story) => (
   </div>
 );
 
+/**
+ * Props that make the sidebar follow the `activeId` and `collapsed` controls and write clicks back
+ * to them, so the controls and the preview always agree. Call it from a story's render function.
+ */
+function useSyncedArgs(args: SidebarProps): SidebarProps {
+  const [, updateArgs] = useArgs<SidebarProps>();
+  return {
+    ...args,
+    onNavigate: (id, event) => {
+      updateArgs({ activeId: id });
+      args.onNavigate?.(id, event);
+    },
+    onCollapsedChange: (collapsed) => {
+      updateArgs({ collapsed });
+      args.onCollapsedChange?.(collapsed);
+    },
+  };
+}
+
 const meta = {
   title: "Components/Sidebar",
   component: Sidebar,
+  render: (args) => <Sidebar {...useSyncedArgs(args)} />,
   decorators: [onBackdrop],
-  args: { sections, user, defaultActiveId: "overview", brandName: "Majlis AI" },
+  args: { sections, user, activeId: "overview", collapsed: false, brandName: "Majlis AI" },
   argTypes: {
-    defaultActiveId: { control: "select", options: sections.flat().map((item) => item.id) },
+    activeId: { control: "select", options: sections.flat().map((item) => item.id), description: "Active page" },
+    collapsed: { control: "boolean" },
+    // Only read when the component first mounts, so they can't drive the preview; activeId / collapsed replace them here.
+    defaultActiveId: { table: { disable: true } },
+    defaultCollapsed: { table: { disable: true } },
     onNavigate: { action: "navigate" },
     onCollapsedChange: { action: "collapsedChange" },
     onUserClick: { action: "userClick" },
@@ -65,41 +90,36 @@ type Story = StoryObj<typeof meta>;
 export const Expanded: Story = {};
 
 export const Collapsed: Story = {
-  args: { defaultCollapsed: true },
+  args: { collapsed: true },
 };
 
 export const WithoutUser: Story = {
   args: { user: undefined },
 };
 
-/** Both modes side by side, as in the Figma frame. */
+/** Both modes side by side, as in the Figma frame. The active page follows the control. */
 export const BothModes: Story = {
-  render: (args) => (
-    <>
-      <Sidebar {...args} aria-label="Main (expanded)" />
-      <Sidebar {...args} defaultCollapsed aria-label="Main (collapsed)" />
-    </>
-  ),
-};
-
-/** Controlled: the active page lives in the parent's state. */
-export const Controlled: Story = {
+  argTypes: { collapsed: { table: { disable: true } } },
   render: (args) => {
-    const [active, setActive] = useState("documents");
+    const synced = useSyncedArgs(args);
     return (
       <>
-        <Sidebar
-          {...args}
-          activeId={active}
-          onNavigate={(id, event) => {
-            event.preventDefault();
-            setActive(id);
-          }}
-        />
-        <p style={{ alignSelf: "center", font: "500 14px/20px var(--font-family-primary), sans-serif" }}>
-          Active page: <strong>{active}</strong>
-        </p>
+        <Sidebar {...synced} collapsed={false} aria-label="Main (expanded)" />
+        <Sidebar {...synced} collapsed aria-label="Main (collapsed)" />
       </>
     );
   },
+};
+
+/** The active page, shown next to the sidebar: change it from the control or by clicking. */
+export const Controlled: Story = {
+  args: { activeId: "documents" },
+  render: (args) => (
+    <>
+      <Sidebar {...useSyncedArgs(args)} />
+      <p style={{ alignSelf: "center", font: "500 14px/20px var(--font-family-primary), sans-serif" }}>
+        Active page: <strong>{args.activeId}</strong>
+      </p>
+    </>
+  ),
 };
